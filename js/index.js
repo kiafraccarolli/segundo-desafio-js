@@ -1,8 +1,8 @@
 const productos = [
-  { id: "A", nombre: "jabon exfoliante", precio: 550 },
-  { id: "B", nombre: "aceite de cuticulas", precio: 400 },
-  { id: "C", nombre: "rimel extra volumen", precio: 799 },
-  { id: "D", nombre: "set peine + colitas", precio: 1200 },
+  { id: "A", nombre: "Jabón exfoliante", precio: 550 },
+  { id: "B", nombre: "Aceite de cutículas", precio: 400 },
+  { id: "C", nombre: "Rimmel extra volumen", precio: 799 },
+  { id: "D", nombre: "Set peine + colitas", precio: 1200 },
 ];
 function operaciones(op) {
   if (op === "suma") {
@@ -35,7 +35,7 @@ const esResponsableInscripto = (precioNeto, calculoIva, precioBruto) => {
 };
 
 alert("Bienvenido a la tienda!");
-let mensaje = "BeautyHome - Nuestros productos: \n;";
+let mensaje = "BeautyHome - Nuestros productos: \n";
 productos.forEach((item) => {
   mensaje += ` ${item.id}- ${item.nombre} a $${item.precio},\n`;
 });
