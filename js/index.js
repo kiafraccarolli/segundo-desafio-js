@@ -1,9 +1,16 @@
-const productos = [
-  { id: "A", nombre: "Jabón exfoliante", precio: 550 },
-  { id: "B", nombre: "Aceite de cutículas", precio: 400 },
-  { id: "C", nombre: "Rimmel extra volumen", precio: 799 },
-  { id: "D", nombre: "Set peine + colitas", precio: 1200 },
-];
+class producto {
+  constructor(id, nombre, precio) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+}
+let productos = [];
+productos.push(new producto("1", "Jabón exfoliante", 550));
+productos.push(new producto("2", "Aceite de cutículas", 400));
+productos.push(new producto("3", "Rimmel extra volumen", 799));
+productos.push(new producto("4", "Set peine + colitas", 1200));
+
 function operaciones(op) {
   if (op === "suma") {
     return (x, y) => x + y;
@@ -35,59 +42,33 @@ const esResponsableInscripto = (precioNeto, calculoIva, precioBruto) => {
 };
 
 alert("Bienvenido a la tienda!");
+
 let mensaje = "BeautyHome - Nuestros productos: \n";
 productos.forEach((item) => {
   mensaje += ` ${item.id}- ${item.nombre} a $${item.precio},\n`;
 });
 alert(mensaje);
-let eleccion = prompt("Ingrese la inicial del producto:");
 
+let eleccion = parseInt(prompt("Ingrese el número del producto deseado:"));
+while (!eleccion || eleccion > 4) {
+    alert("El numero ingresado no corresponde a ningún producto");
+    cantidad = parseInt(prompt("Ingrese el número del producto deseado:"));
+  }
 let cantidad = parseInt(prompt("Ingrese la cantidad de unidades (máx 10.)"));
 while (!cantidad || cantidad > 10) {
   alert("Seleccione una cantidad de 1 a 10");
   cantidad = parseInt(prompt("Ingrese la cantidad de unidades (máx 10.)"));
 }
 
-if (eleccion.toUpperCase() === "A") {
-  let resumen = ` Usted ha seleccionado ${cantidad} unidades de ${productos[0].nombre}`;
-  alert(resumen);
-  let precio = productos[0].precio;
+let anterior = (x) => x - 1;
+let indice = anterior(eleccion);
 
-  let precioNeto = multiplicacion(precio, cantidad);
-  let calculoIva = iva(precioNeto);
-  let precioBruto = suma(precioNeto, calculoIva);
+let resumen = `Usted ha seleccionado ${cantidad} unidades de ${productos[indice].nombre}`;
+alert(resumen);
+let precio = productos[indice].precio;
 
-  esResponsableInscripto(precioNeto, calculoIva, precioBruto);
-} else if (eleccion.toUpperCase() === "B") {
-  let resumen = ` Usted ha seleccionado ${cantidad} unidades de ${productos[1].nombre}`;
-  alert(resumen);
-  let precio = productos[1].precio;
+let precioNeto = multiplicacion(precio, cantidad);
+let calculoIva = iva(precioNeto);
+let precioBruto = suma(precioNeto, calculoIva);
 
-  let precioNeto = multiplicacion(precio, cantidad);
-  let calculoIva = iva(precioNeto);
-  let precioBruto = suma(precioNeto, calculoIva);
-
-  esResponsableInscripto(precioNeto, calculoIva, precioBruto);
-} else if (eleccion.toUpperCase() === "C") {
-  let resumen = ` Usted ha seleccionado ${cantidad} unidades de ${productos[2].nombre}`;
-  alert(resumen);
-  let precio = productos[2].precio;
-
-  let precioNeto = multiplicacion(precio, cantidad);
-  let calculoIva = iva(precioNeto);
-  let precioBruto = suma(precioNeto, calculoIva);
-
-  esResponsableInscripto(precioNeto, calculoIva, precioBruto);
-} else if (eleccion.toUpperCase() === "D") {
-  let resumen = ` Usted ha seleccionado ${cantidad} unidades de ${productos[3].nombre}`;
-  alert(resumen);
-  let precio = productos[3].precio;
-
-  let precioNeto = multiplicacion(precio, cantidad);
-  let calculoIva = iva(precioNeto);
-  let precioBruto = suma(precioNeto, calculoIva);
-
-  esResponsableInscripto(precioNeto, calculoIva, precioBruto);
-} else {
-  alert("La letra ingresada no corresponde a ningun producto");
-}
+esResponsableInscripto(precioNeto, calculoIva, precioBruto);
