@@ -5,6 +5,7 @@ class producto {
     this.precio = precio;
   }
 }
+
 let productos = [];
 productos.push(new producto("1", "Jabón exfoliante", 550));
 productos.push(new producto("2", "Aceite de cutículas", 400));
@@ -22,19 +23,18 @@ function operaciones(op) {
     return (x, y) => x * y;
   }
 }
+
 let suma = operaciones("suma");
 let iva = operaciones("iva");
 let multiplicacion = operaciones("multiplicacion");
 
-const esResponsableInscripto = (precioNeto, calculoIva, precioBruto) => {
+const esResponsableInscripto = (precioNeto, calculoIva, precioBruto) => { //Bueeeena esa arrowFunction
   let sujeto = prompt("Es usted responsable inscripto?").toUpperCase();
 
   if (sujeto === "SI") {
-    let recibo = `Su total es $${precioNeto}+ $${calculoIva} (iva) = $${precioBruto}`;
-    alert(recibo);
-  } else if (sujeto === "NO") {
-    let recibo = `Su total es $${precioBruto} (iva incluido)`;
-    alert(recibo);
+    alert(`Su total es $${precioNeto}+ $${calculoIva} (iva) = $${precioBruto}`);
+  } else if (sujeto === "NO") {                         //Esto es mas cortito
+    alert(`Su total es $${precioBruto} (iva incluido)`);
   } else {
     alert("Por favor ingrese Si o No!");
     esResponsableInscripto(precioNeto, calculoIva, precioBruto);
@@ -51,9 +51,9 @@ alert(mensaje);
 
 let eleccion = parseInt(prompt("Ingrese el número del producto deseado:"));
 while (!eleccion || eleccion > 4) {
-    alert("El numero ingresado no corresponde a ningún producto");
-    cantidad = parseInt(prompt("Ingrese el número del producto deseado:"));
-  }
+  alert("El numero ingresado no corresponde a ningún producto");
+  cantidad = parseInt(prompt("Ingrese el número del producto deseado:"));
+}
 let cantidad = parseInt(prompt("Ingrese la cantidad de unidades (máx 10.)"));
 while (!cantidad || cantidad > 10) {
   alert("Seleccione una cantidad de 1 a 10");
